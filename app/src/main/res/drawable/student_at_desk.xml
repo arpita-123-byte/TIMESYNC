@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Desk - blue -->
+    <path
+        android:fillColor="#4B74FF"
+        android:pathData="M60,140 L180,140 L180,160 L60,160 Z" />
+
+    <!-- Desk legs -->
+    <path
+        android:fillColor="#4B74FF"
+        android:pathData="M65,160 L75,160 L75,190 L65,190 Z" />
+
+    <path
+        android:fillColor="#4B74FF"
+        android:pathData="M165,160 L175,160 L175,190 L165,190 Z" />
+
+    <!-- Chair base -->
+    <path
+        android:fillColor="#A484CB"
+        android:pathData="M110,180 L130,180 L130,190 L110,190 Z" />
+
+    <!-- Chair pole -->
+    <path
+        android:fillColor="#A484CB"
+        android:pathData="M118,160 L122,160 L122,180 L118,180 Z" />
+
+    <!-- Chair seat -->
+    <path
+        android:fillColor="#A484CB"
+        android:pathData="M105,160 L135,160 L135,165 L105,165 Z" />
+
+    <!-- Desktop monitor - gray -->
+    <path
+        android:fillColor="#666666"
+        android:pathData="M75,90 L105,90 L105,130 L75,130 Z" />
+
+    <!-- Monitor screen - white -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M78,95 L102,95 L102,125 L78,125 Z" />
+
+    <!-- Monitor base -->
+    <path
+        android:fillColor="#444444"
+        android:pathData="M85,130 L95,130 L95,140 L85,140 Z" />
+
+    <!-- Laptop - Red -->
+    <path
+        android:fillColor="#9D2459"
+        android:pathData="M130,110 L160,110 L160,125 L130,125 Z" />
+    
+    <!-- Laptop screen - darker red -->
+    <path
+        android:fillColor="#6D1A3F"
+        android:pathData="M132,112 L158,112 L158,123 L132,123 Z" />
+
+    <!-- Laptop base -->
+    <path
+        android:fillColor="#9D2459"
+        android:pathData="M130,125 L160,125 L163,135 L127,135 Z" />
+
+    <!-- Person body -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M120,120 C130,120 137,110 137,100 C137,95 135,90 130,80 C125,70 120,70 115,70 C110,70 105,70 100,80 C95,90 93,95 93,100 C93,110 110,120 120,120 Z" />
+
+    <!-- Person head -->
+    <path
+        android:fillColor="#F5D0A9"
+        android:pathData="M120,70 C130,70 135,80 135,90 C135,100 130,110 120,110 C110,110 105,100 105,90 C105,80 110,70 120,70 Z" />
+
+    <!-- Person hat -->
+    <path
+        android:fillColor="#8B2CC9"
+        android:pathData="M120,75 C125,75 130,78 130,83 L110,83 C110,78 115,75 120,75 Z" />
+    
+    <path
+        android:fillColor="#8B2CC9"
+        android:pathData="M110,80 L130,80 L132,85 L108,85 Z" />
+    
+    <!-- Hat ball -->
+    <path
+        android:fillColor="#F1857B"
+        android:pathData="M120,75 C122,75 124,73 124,70 C124,67 122,65 120,65 C118,65 116,67 116,70 C116,73 118,75 120,75 Z" />
+
+    <!-- Person eyes -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M115,90 C116,90 117,91 117,92 C117,93 116,94 115,94 C114,94 113,93 113,92 C113,91 114,90 115,90 Z" />
+    
+    <path
+        android:fillColor="#000000"
+        android:pathData="M125,90 C126,90 127,91 127,92 C127,93 126,94 125,94 C124,94 123,93 123,92 C123,91 124,90 125,90 Z" />
+
+    <!-- Person smile -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M115,100 C118,102 122,102 125,100" 
+        android:strokeWidth="1.5"
+        android:strokeColor="#000000"
+        android:strokeLineCap="round"/>
+
+    <!-- Person arms -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M100,105 C95,105 90,110 90,115 C90,120 92,126 95,130 L105,125 C103,122 102,115 100,105 Z" />
+    
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M140,105 C145,105 150,110 150,115 C150,120 148,126 145,130 L135,125 C137,122 138,115 140,105 Z" />
+
+    <!-- Person legs/pants -->
+    <path
+        android:fillColor="#3654AD"
+        android:pathData="M110,120 L115,160 L125,160 L130,120 Z" />
+
+    <!-- Person shoes -->
+    <path
+        android:fillColor="#4B74FF"
+        android:pathData="M114,160 L116,165 L124,165 L126,160 Z" />
+
+    <!-- Small plant -->
+    <path
+        android:fillColor="#75C095"
+        android:pathData="M50,180 C55,175 60,175 65,180 C60,183 55,183 50,180 Z" />
+    
+    <path
+        android:fillColor="#75C095"
+        android:pathData="M52,175 C57,170 62,172 65,178 C60,179 55,177 52,175 Z" />
+    
+    <path
+        android:fillColor="#B97A4D"
+        android:pathData="M56,180 L60,180 L60,190 L56,190 Z" />
+
+    <!-- Light rays above monitor -->
+    <path
+        android:fillColor="#CCCCFF"
+        android:pathData="M75,85 L80,80 L85,85 L80,90 Z" />
+    
+    <path
+        android:fillColor="#CCCCFF"
+        android:pathData="M90,85 L95,80 L100,85 L95,90 Z" />
+    
+    <path
+        android:fillColor="#CCCCFF"
+        android:pathData="M82,75 L87,70 L92,75 L87,80 Z" />
+
+    <!-- Raised hand -->
+    <path
+        android:fillColor="#F5D0A9"
+        android:pathData="M142,80 C147,75 150,80 148,85 C145,90 140,85 142,80 Z" />
+    
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M142,85 C140,95 145,100 150,105 C155,95 150,85 142,85 Z" />
+
+</vector> 

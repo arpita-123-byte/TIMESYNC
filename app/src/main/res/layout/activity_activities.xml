@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Header section with navy blue background -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navy_blue"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        <TextView
+            android:id="@+id/tvActivities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="Activities"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:backgroundTint="#30FFFFFF"
+            android:text="Today"
+            android:drawableEnd="@drawable/ic_dropdown_arrow"
+            android:drawablePadding="4dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tvActivities"
+            app:layout_constraintEnd_toStartOf="@+id/btnCalendar"
+            app:layout_constraintTop_toTopOf="@+id/tvActivities" />
+
+        <ImageButton
+            android:id="@+id/btnCalendar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="24dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Calendar"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/btnToday"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnToday" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/navy_blue"
+            app:layout_constraintTop_toBottomOf="@+id/tvActivities"
+            app:tabIndicatorColor="@color/light_blue"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="@color/light_gray">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Table" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Statistics" />
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timeTableContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/customNavContainer"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:text="17 September"
+            android:textColor="@color/light_gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Today"
+            android:textColor="@color/navy_blue"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tvDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRunningSubjects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Running Subjects"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/rounded_button_background"
+            android:backgroundTint="@color/light_blue"
+            app:layout_constraintBottom_toBottomOf="@+id/tvToday"
+            app:layout_constraintStart_toEndOf="@+id/tvToday"
+            app:layout_constraintTop_toTopOf="@+id/tvToday" />
+
+        <HorizontalScrollView
+            android:id="@+id/weekdaysScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@+id/tvToday">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp">
+
+                <include
+                    android:id="@+id/mondayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/tuesdayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/wednesdayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/thursdayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/fridayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/saturdayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp" />
+
+                <include
+                    android:id="@+id/sundayItem"
+                    layout="@layout/item_weekday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/circle_profile_border"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_placeholder"
+            android:contentDescription="Profile Image"
+            app:layout_constraintBottom_toBottomOf="@+id/weekdaysScroll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/weekdaysScroll" />
+
+        <TextView
+            android:id="@+id/tvTasksCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="You've got"
+            android:textColor="@color/navy_blue"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/tvToday"
+            app:layout_constraintTop_toBottomOf="@+id/weekdaysScroll" />
+
+        <TextView
+            android:id="@+id/tvTasksCountHighlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="4 tasks today"
+            android:textColor="@color/mint_green"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tvTasksCount"
+            app:layout_constraintTop_toBottomOf="@+id/tvTasksCount" />
+
+        <TextView
+            android:id="@+id/tvYourSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Your schedule"
+            android:textColor="@color/navy_blue"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tvTasksCountHighlight"
+            app:layout_constraintTop_toBottomOf="@+id/tvTasksCountHighlight" />
+
+        <TextView
+            android:id="@+id/tvUpcomingClasses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Upcoming classes and tasks"
+            android:textColor="@color/light_gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/tvYourSchedule"
+            app:layout_constraintTop_toBottomOf="@+id/tvYourSchedule" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/rounded_button_green"
+            android:drawableStart="@drawable/ic_add"
+            android:drawablePadding="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Add Task"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tvUpcomingClasses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvYourSchedule"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpcomingClasses" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/customNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#000000"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Activities Icon (Highlighted) -->
+        <FrameLayout
+            android:id="@+id/navActivities"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_home_white"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+
+        <!-- Stats Icon -->
+        <FrameLayout
+            android:id="@+id/navStats"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chart_white"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+
+        <!-- Add Icon -->
+        <FrameLayout
+            android:id="@+id/navAdd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_white"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+
+        <!-- Goals Icon -->
+        <FrameLayout
+            android:id="@+id/navGoals"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tasks"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+
+        <!-- Profile Icon -->
+        <FrameLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person_white"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

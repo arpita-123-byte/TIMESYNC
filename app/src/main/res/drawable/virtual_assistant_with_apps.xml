@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="240dp"
+    android:viewportWidth="240"
+    android:viewportHeight="240">
+
+    <!-- Main character body - blue -->
+    <path
+        android:fillColor="#4B44D1"
+        android:pathData="M120,180 C150,180 170,150 170,120 C170,90 150,60 120,60 C90,60 70,90 70,120 C70,150 90,180 120,180 Z" />
+
+    <!-- Head -->
+    <path
+        android:fillColor="#F7D9C4"
+        android:pathData="M120,85 C140,85 150,95 150,110 C150,125 140,135 120,135 C100,135 90,125 90,110 C90,95 100,85 120,85 Z" />
+
+    <!-- VR Headset -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M95,105 C95,100 110,95 120,95 C130,95 145,100 145,105 C145,110 130,118 120,118 C110,118 95,110 95,105 Z" />
+
+    <path
+        android:fillColor="#3A4CDF"
+        android:pathData="M95,105 C95,103 110,100 120,100 C130,100 145,103 145,105 C145,107 130,110 120,110 C110,110 95,107 95,105 Z" />
+
+    <!-- Left hand -->
+    <path
+        android:fillColor="#F7D9C4"
+        android:pathData="M70,120 C65,115 60,120 65,125 C70,130 75,135 80,140 C85,145 90,150 95,140 C100,130 75,125 70,120 Z" />
+
+    <!-- Right hand -->
+    <path
+        android:fillColor="#F7D9C4"
+        android:pathData="M170,120 C175,115 180,120 175,125 C170,130 165,135 160,140 C155,145 150,150 145,140 C140,130 165,125 170,120 Z" />
+
+    <!-- Left microphone/controller -->
+    <path
+        android:fillColor="#E570A5"
+        android:pathData="M65,125 C63,123 60,123 58,125 C56,127 56,130 58,132 C60,134 63,134 65,132 C67,130 67,127 65,125 Z" />
+
+    <!-- Right microphone/controller -->
+    <path
+        android:fillColor="#5BC2EB"
+        android:pathData="M175,125 C177,123 180,123 182,125 C184,127 184,130 182,132 C180,134 177,134 175,132 C173,130 173,127 175,125 Z" />
+
+    <!-- Cloud app icon -->
+    <path
+        android:fillColor="#68B6EA"
+        android:pathData="M50,90 C45,90 40,95 40,100 C40,105 45,110 50,110 C55,110 60,105 60,100 C60,95 55,90 50,90 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50,95 C48,95 45,97 45,100 C45,105 53,105 55,100 C57,95 52,95 50,95 Z" />
+
+    <!-- Chat app icon -->
+    <path
+        android:fillColor="#62D5AE"
+        android:pathData="M40,150 C35,150 30,155 30,160 C30,165 35,170 40,170 C45,170 50,165 50,160 C50,155 45,150 40,150 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,155 C39,155 38,156 38,157 L38,163 C38,164 39,165 40,165 L46,165 C47,165 48,164 48,163 L48,157 C48,156 47,155 46,155 L40,155 Z M42,158 C43,158 44,159 44,160 C44,161 43,162 42,162 C41,162 40,161 40,160 C40,159 41,158 42,158 Z" />
+
+    <!-- Video app icon -->
+    <path
+        android:fillColor="#C9BFEF"
+        android:pathData="M180,90 C175,90 170,95 170,100 C170,105 175,110 180,110 C185,110 190,105 190,100 C190,95 185,90 180,90 Z" />
+    <path
+        android:fillColor="#9181E3"
+        android:pathData="M180,95 C179,95 178,96 178,97 L178,103 C178,104 179,105 180,105 L185,105 C186,105 187,104 187,103 L187,97 C187,96 186,95 185,95 L180,95 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M181,97 L185,100 L181,103 Z" />
+
+    <!-- Gallery app icon -->
+    <path
+        android:fillColor="#C9BFEF"
+        android:pathData="M140,80 C135,80 130,85 130,90 C130,95 135,100 140,100 C145,100 150,95 150,90 C150,85 145,80 140,80 Z" />
+    <path
+        android:fillColor="#9181E3"
+        android:pathData="M140,85 C139,85 138,86 138,87 L138,93 C138,94 139,95 140,95 L145,95 C146,95 147,94 147,93 L147,87 C147,86 146,85 145,85 L140,85 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M140,88 L143,90 L140,92 Z" />
+
+    <!-- Design app icon -->
+    <path
+        android:fillColor="#EAEAEA"
+        android:pathData="M190,150 C185,150 180,155 180,160 C180,165 185,170 190,170 C195,170 200,165 200,160 C200,155 195,150 190,150 Z" />
+    <path
+        android:fillColor="#333333"
+        android:pathData="M190,155 C189,155 188,155 187,156 C186,157 186,158 186,159 C186,160 186,161 187,162 C188,163 189,163 190,163 C191,163 192,163 193,162 C194,161 194,160 194,159 C194,158 194,157 193,156 C192,155 191,155 190,155 Z" />
+    <path
+        android:fillColor="#FF5252"
+        android:pathData="M187,158 C186,158 185,159 185,160 C185,161 186,162 187,162 C188,162 189,161 189,160 C189,159 188,158 187,158 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M190,155 C189,155 188,156 188,157 C188,158 189,159 190,159 C191,159 192,158 192,157 C192,156 191,155 190,155 Z" />
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M193,158 C192,158 191,159 191,160 C191,161 192,162 193,162 C194,162 195,161 195,160 C195,159 194,158 193,158 Z" />
+
+    <!-- Color palette app icon -->
+    <path
+        android:fillColor="#EAEAEA"
+        android:pathData="M160,70 C155,70 150,75 150,80 C150,85 155,90 160,90 C165,90 170,85 170,80 C170,75 165,70 160,70 Z" />
+    <path
+        android:fillColor="#FF5252"
+        android:pathData="M155,80 C156,80 157,79 157,78 C157,77 156,76 155,76 C154,76 153,77 153,78 C153,79 154,80 155,80 Z" />
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M158,80 C159,80 160,79 160,78 C160,77 159,76 158,76 C157,76 156,77 156,78 C156,79 157,80 158,80 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M161,80 C162,80 163,79 163,78 C163,77 162,76 161,76 C160,76 159,77 159,78 C159,79 160,80 161,80 Z" />
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M164,80 C165,80 166,79 166,78 C166,77 165,76 164,76 C163,76 162,77 162,78 C162,79 163,80 164,80 Z" />
+    <path
+        android:fillColor="#9C27B0"
+        android:pathData="M167,80 C168,80 169,79 169,78 C169,77 168,76 167,76 C166,76 165,77 165,78 C165,79 166,80 167,80 Z" />
+
+    <!-- Plus symbols -->
+    <path
+        android:fillColor="#8083FF"
+        android:pathData="M110,65 L110,55 L100,55 L100,50 L110,50 L110,40 L115,40 L115,50 L125,50 L125,55 L115,55 L115,65 Z" />
+    
+    <path
+        android:fillColor="#8083FF"
+        android:pathData="M190,120 L190,110 L180,110 L180,105 L190,105 L190,95 L195,95 L195,105 L205,105 L205,110 L195,110 L195,120 Z" />
+    
+    <path
+        android:fillColor="#8083FF"
+        android:pathData="M100,160 L100,150 L90,150 L90,145 L100,145 L100,135 L105,135 L105,145 L115,145 L115,150 L105,150 L105,160 Z" />
+
+</vector> 
