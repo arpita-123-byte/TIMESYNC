@@ -94,10 +94,12 @@ public class RewardsActivity extends AppCompatActivity {
         ImageView navTasks = findViewById(R.id.navTasks);
         ImageView navProfile = findViewById(R.id.navProfile);
         
-        // Home icon - stay on current page (RewardsActivity)
+        // Home icon - navigate to ActivitiesActivity
         navHome.setOnClickListener(v -> {
             highlightNavIcon(navHome);
-            // Already on RewardsActivity, do nothing
+            Intent intent = new Intent(this, ActivitiesActivity.class);
+            startActivity(intent);
+            finish();
         });
         
         // Stats icon - navigate to DashboardActivity
@@ -122,14 +124,16 @@ public class RewardsActivity extends AppCompatActivity {
             highlightNavIcon(navTasks);
         });
         
-        // Profile icon - would navigate to profile
+        // Profile icon - navigate to profile page
         navProfile.setOnClickListener(v -> {
             highlightNavIcon(navProfile);
-            // Profile navigation would be implemented here
+            Intent intent = new Intent(RewardsActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         });
         
-        // Default highlight the rewards icon since we're on the rewards activity
-        highlightNavIcon(navTasks);
+        // Highlight the first icon (Home) to match the image
+        highlightNavIcon(navHome);
     }
     
     /**
@@ -152,9 +156,6 @@ public class RewardsActivity extends AppCompatActivity {
         
         // Set selected icon tint to blue
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
-        
-        // Add highlight to selected icon
-        selectedIcon.setBackgroundResource(R.drawable.nav_selected_background);
         
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();

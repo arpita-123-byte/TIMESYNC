@@ -312,65 +312,103 @@
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>
 
-    <!-- Pure Bottom Navigation Bar with No Styling -->
+    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/customNavContainer"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#000000"
-        android:elevation="1000dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Home Icon -->
-        <ImageView
-            android:id="@+id/navHome"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_home_white"
-            android:padding="15dp"
-            android:layout_weight="1"/>
+        <!-- Activities Icon -->
+        <FrameLayout
+            android:id="@+id/navHomeContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:id="@+id/navHome"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_home_white"
+                android:tint="@android:color/white" />
+        </FrameLayout>
 
         <!-- Stats Icon -->
-        <ImageView
-            android:id="@+id/navStats"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_chart_white"
-            android:padding="15dp"
-            android:layout_weight="1"/>
+        <FrameLayout
+            android:id="@+id/navStatsContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:id="@+id/navStats"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chart_white"
+                android:tint="@android:color/white" />
+        </FrameLayout>
 
         <!-- Add Icon -->
-        <ImageView
-            android:id="@+id/navAdd"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_add_white"
-            android:padding="15dp"
-            android:layout_weight="1"/>
+        <FrameLayout
+            android:id="@+id/navAddContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:id="@+id/navAdd"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_white"
+                android:tint="@android:color/white" />
+        </FrameLayout>
 
-        <!-- Tasks Icon (Replacing Calendar Icon) -->
-        <ImageView
-            android:id="@+id/navTasks"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_tasks"
-            android:padding="15dp"
-            android:layout_weight="1"/>
+        <!-- Goals Icon -->
+        <FrameLayout
+            android:id="@+id/navTasksContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:id="@+id/navTasks"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_tasks"
+                android:tint="@android:color/white" />
+        </FrameLayout>
 
         <!-- Profile Icon -->
-        <ImageView
-            android:id="@+id/navProfile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_person_white"
-            android:padding="15dp"
-            android:layout_weight="1"/>
+        <FrameLayout
+            android:id="@+id/navProfileContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground">
+            
+            <ImageView
+                android:id="@+id/navProfile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person_white"
+                android:tint="@android:color/white" />
+        </FrameLayout>
     </LinearLayout>
     
     <!-- Hidden original navigation (keeping for functionality) -->

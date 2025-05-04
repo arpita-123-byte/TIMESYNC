@@ -290,10 +290,12 @@ public class StatisticsActivity extends AppCompatActivity {
         ImageView navTasks = findViewById(R.id.navTasks);
         ImageView navProfile = findViewById(R.id.navProfile);
         
-        // Home icon - currently not connected
+        // Home icon - navigate to ActivitiesActivity
         navHome.setOnClickListener(v -> {
             highlightNavIcon(navHome);
-            // Not connected to any page
+            Intent intent = new Intent(this, ActivitiesActivity.class);
+            startActivity(intent);
+            finish();
         });
         
         // Stats icon - navigate to DashboardActivity
@@ -320,19 +322,16 @@ public class StatisticsActivity extends AppCompatActivity {
             finish();
         });
         
-        // Profile icon - would navigate to profile page
+        // Profile icon - navigate to profile
         navProfile.setOnClickListener(v -> {
             highlightNavIcon(navProfile);
-            // This would navigate to a profile page in a real app
+            Intent intent = new Intent(StatisticsActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         });
         
-        // Don't highlight any bottom nav icons for this page
-        // Clear all highlights
-        navHome.setBackgroundResource(0);
-        navStats.setBackgroundResource(0);
-        navAdd.setBackgroundResource(0);
-        navTasks.setBackgroundResource(0);
-        navProfile.setBackgroundResource(0);
+        // Highlight the first icon (Home) to match the image
+        highlightNavIcon(navHome);
     }
     
     /**
@@ -372,9 +371,6 @@ public class StatisticsActivity extends AppCompatActivity {
         
         // Set selected icon tint to blue
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
-        
-        // Add highlight to selected icon
-        selectedIcon.setBackgroundResource(R.drawable.nav_selected_background);
         
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();

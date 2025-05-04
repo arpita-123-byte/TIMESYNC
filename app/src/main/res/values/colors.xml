@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#0A2342</color>
-    <color name="colorAccent">#4CAF50</color>
-    <color name="colorUnproductive">#F44336</color>
-    <color name="colorScoreBlue">#2196F3</color>
-    <color name="colorScoreRed">#F44336</color>
-    <color name="navy_blue">#0F172A</color>
+    <color name="colorPrimary">#6F7CFF</color>
+    <color name="colorPrimaryDark">#0C1445</color>
+    <color name="colorAccent">#4BD37B</color>
+    
+    <color name="navy_blue">#0C1445</color>
+    <color name="light_blue">#6F7CFF</color>
+    <color name="mint_green">#4BD37B</color>
+    <color name="light_green">#E8F8EE</color>
+    <color name="light_blue_bg">#E8F0F8</color>
+    <color name="light_gray">#A0A6B3</color>
+    <color name="gray">#545A6C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    
+    <color name="physics_bg">#4058B3</color>
+    <color name="geography_bg">#2A6E40</color>
+    <color name="assignment_bg">#304F70</color>
+    
+    <!-- Productivity colors -->
     <color name="productive_color">#4CAF50</color>
     <color name="unproductive_color">#F44336</color>
+    
+    <!-- Accent colors -->
     <color name="blue_accent">#2196F3</color>
 </resources>

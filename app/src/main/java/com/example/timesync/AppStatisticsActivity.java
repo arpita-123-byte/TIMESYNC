@@ -255,10 +255,12 @@ public class AppStatisticsActivity extends AppCompatActivity {
         ImageView navTasks = findViewById(R.id.navTasks);
         ImageView navProfile = findViewById(R.id.navProfile);
         
-        // Home icon - currently not connected
+        // Home icon - navigate to ActivitiesActivity
         navHome.setOnClickListener(v -> {
             highlightNavIcon(navHome);
-            // Not connected to any page
+            Intent intent = new Intent(this, ActivitiesActivity.class);
+            startActivity(intent);
+            finish();
         });
         
         // Stats icon - navigate to DashboardActivity
@@ -285,11 +287,16 @@ public class AppStatisticsActivity extends AppCompatActivity {
             finish();
         });
         
-        // Profile icon - would navigate to profile page
+        // Profile icon - navigate to profile
         navProfile.setOnClickListener(v -> {
             highlightNavIcon(navProfile);
-            // This would navigate to a profile page in a real app
+            Intent intent = new Intent(AppStatisticsActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         });
+        
+        // Highlight the first icon (Home) to match the image
+        highlightNavIcon(navHome);
     }
     
     /**
@@ -312,9 +319,6 @@ public class AppStatisticsActivity extends AppCompatActivity {
         
         // Set selected icon tint to blue
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
-        
-        // Add highlight to selected icon
-        selectedIcon.setBackgroundResource(R.drawable.nav_selected_background);
         
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();

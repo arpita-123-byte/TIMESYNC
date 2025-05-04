@@ -4,7 +4,7 @@
     android:padding="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@color/navy_blue"
     android:elevation="4dp"
     android:gravity="center_vertical"
     android:layout_marginStart="8dp"
@@ -28,7 +28,7 @@
         <TextView
             android:id="@+id/appName"
             android:textSize="18sp"
-            android:textColor="#111B2E"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -36,7 +36,7 @@
         <TextView
             android:id="@+id/appTime"
             android:textSize="16sp"
-            android:textColor="#757575"
+            android:textColor="@color/light_gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

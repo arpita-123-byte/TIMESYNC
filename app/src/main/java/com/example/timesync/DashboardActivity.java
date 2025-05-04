@@ -172,10 +172,12 @@ public class DashboardActivity extends AppCompatActivity {
         navTasks = findViewById(R.id.navTasks);
         navProfile = findViewById(R.id.navProfile);
         
-        // Home icon - stay on current page (DashboardActivity)
+        // Home icon - navigate to ActivitiesActivity
         navHome.setOnClickListener(v -> {
             highlightNavIcon(navHome);
-            // Already on Dashboard, do nothing
+            Intent intent = new Intent(DashboardActivity.this, ActivitiesActivity.class);
+            startActivity(intent);
+            finish();
         });
         
         // Stats icon - stay on DashboardActivity (current page)
@@ -203,12 +205,13 @@ public class DashboardActivity extends AppCompatActivity {
         // Profile icon - navigate to a profile page (would be implemented later)
         navProfile.setOnClickListener(v -> {
             highlightNavIcon(navProfile);
-            // This would navigate to a profile page in a real app
-            Toast.makeText(this, "Profile feature coming soon", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         });
         
-        // Highlight the second icon (Stats) since this is the dashboard activity
-        highlightNavIcon(navStats);
+        // Highlight the first icon (Home) to match the image
+        highlightNavIcon(navHome);
     }
     
     /**
@@ -231,9 +234,6 @@ public class DashboardActivity extends AppCompatActivity {
         
         // Set selected icon tint to blue
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
-        
-        // Add highlight to selected icon
-        selectedIcon.setBackgroundResource(R.drawable.nav_selected_background);
         
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();

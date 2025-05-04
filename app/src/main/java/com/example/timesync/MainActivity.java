@@ -346,10 +346,12 @@ public class MainActivity extends AppCompatActivity {
         ImageView navTasks = findViewById(R.id.navTasks);
         ImageView navProfile = findViewById(R.id.navProfile);
         
-        // Home icon - stay on current page (MainActivity)
+        // Home icon - navigate to ActivitiesActivity
         navHome.setOnClickListener(v -> {
             highlightNavIcon(navHome);
-            // Already on MainActivity, do nothing
+            Intent intent = new Intent(MainActivity.this, ActivitiesActivity.class);
+            startActivity(intent);
+            finish();
         });
         
         // Stats icon - navigate to DashboardActivity
@@ -377,25 +379,27 @@ public class MainActivity extends AppCompatActivity {
         // Profile icon - navigate to a profile page (would be implemented later)
         navProfile.setOnClickListener(v -> {
             highlightNavIcon(navProfile);
-            // This would navigate to a profile page in a real app
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
         });
         
-        // Highlight the third icon (Add) since this is the main activity
-        highlightNavIcon(navAdd);
+        // Highlight the first icon (Home) to match the image
+        highlightNavIcon(navHome);
     }
     
     /**
      * Highlights the selected navigation icon and clears others
      */
     private void highlightNavIcon(ImageView selectedIcon) {
-        // Remove highlight from all icons
-        findViewById(R.id.navHome).setBackgroundResource(0);
-        findViewById(R.id.navStats).setBackgroundResource(0);
-        findViewById(R.id.navAdd).setBackgroundResource(0);
-        findViewById(R.id.navTasks).setBackgroundResource(0);
-        findViewById(R.id.navProfile).setBackgroundResource(0);
+        // Reset all icon backgrounds
+        findViewById(R.id.navHomeContainer).setBackgroundResource(0);
+        findViewById(R.id.navStatsContainer).setBackgroundResource(0);
+        findViewById(R.id.navAddContainer).setBackgroundResource(0);
+        findViewById(R.id.navTasksContainer).setBackgroundResource(0);
+        findViewById(R.id.navProfileContainer).setBackgroundResource(0);
         
-        // Update tint colors - reset all to default first
+        // Reset all icon tints
         ((ImageView)findViewById(R.id.navHome)).setColorFilter(null);
         ((ImageView)findViewById(R.id.navStats)).setColorFilter(null);
         ((ImageView)findViewById(R.id.navAdd)).setColorFilter(null);
@@ -404,9 +408,6 @@ public class MainActivity extends AppCompatActivity {
         
         // Set selected icon tint to blue
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
-        
-        // Add highlight to selected icon
-        selectedIcon.setBackgroundResource(R.drawable.nav_selected_background);
         
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();
