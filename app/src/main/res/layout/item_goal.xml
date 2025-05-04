@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Goal Icon -->
+        <ImageView
+            android:id="@+id/goal_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Goal Icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_study" />
+
+        <!-- Goal Name -->
+        <TextView
+            android:id="@+id/goal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/goal_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Study" />
+
+        <!-- Goal Target -->
+        <TextView
+            android:id="@+id/goal_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/blue_accent"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/goal_icon"
+            app:layout_constraintTop_toBottomOf="@id/goal_name"
+            tools:text="Spend more than 5h" />
+
+        <!-- Today Label -->
+        <TextView
+            android:id="@+id/today_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Today"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/goal_target" />
+
+        <!-- Current Time -->
+        <TextView
+            android:id="@+id/goal_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/today_label"
+            tools:text="09h 41m" />
+
+        <!-- Everyday Label -->
+        <TextView
+            android:id="@+id/everyday_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:text="Everyday"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/today_label"
+            app:layout_constraintStart_toEndOf="@id/today_label"
+            app:layout_constraintTop_toTopOf="@id/today_label" />
+
+        <!-- Calendar Icon -->
+        <ImageView
+            android:id="@+id/calendar_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="Calendar"
+            android:src="@drawable/ic_calendar_small"
+            app:layout_constraintStart_toStartOf="@id/everyday_label"
+            app:layout_constraintTop_toBottomOf="@id/everyday_label" />
+
+        <!-- Productive/Unproductive Status -->
+        <ImageView
+            android:id="@+id/goal_status_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Status"
+            app:layout_constraintBottom_toBottomOf="@id/goal_status"
+            app:layout_constraintEnd_toStartOf="@id/goal_status"
+            app:layout_constraintTop_toTopOf="@id/goal_status"
+            tools:src="@drawable/ic_productive" />
+
+        <TextView
+            android:id="@+id/goal_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/goal_time"
+            app:layout_constraintEnd_toStartOf="@id/goal_options"
+            app:layout_constraintTop_toTopOf="@id/everyday_label"
+            tools:text="Productive"
+            tools:textColor="@color/productive_color" />
+
+        <!-- Options Menu -->
+        <ImageView
+            android:id="@+id/goal_options"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Options"
+            android:src="@drawable/ic_more_options"
+            app:layout_constraintBottom_toBottomOf="@id/goal_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/goal_status" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView> 

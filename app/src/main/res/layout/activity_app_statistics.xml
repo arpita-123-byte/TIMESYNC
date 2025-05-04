@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A"
+    tools:context=".AppStatisticsActivity">
+
+    <!-- Header with title -->
+    <TextView
+        android:id="@+id/tvStatisticsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:text="App Details"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardDateFilter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside" />
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/circle_button_bg"
+        android:src="@drawable/ic_back"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatisticsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvStatisticsTitle" />
+
+    <!-- Date Filter Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDateFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#2A3B62"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatisticsTitle"
+        app:layout_constraintEnd_toStartOf="@+id/btnCalendar"
+        app:layout_constraintStart_toEndOf="@id/tvStatisticsTitle"
+        app:layout_constraintTop_toTopOf="@id/tvStatisticsTitle">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvDateFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Calendar Button -->
+    <ImageButton
+        android:id="@+id/btnCalendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatisticsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvStatisticsTitle" />
+
+    <!-- Tabs for Categories and Goals -->
+    <LinearLayout
+        android:id="@+id/tabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvStatisticsTitle">
+
+        <TextView
+            android:id="@+id/tabCategories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="CATEGORIES"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabGoals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="GOALS"
+            android:textColor="#FF4B55"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Tab Indicator -->
+    <View
+        android:id="@+id/tabIndicator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:background="#3498DB"
+        app:layout_constraintStart_toStartOf="@id/tabCategories"
+        app:layout_constraintEnd_toEndOf="@id/tabCategories"
+        app:layout_constraintTop_toBottomOf="@id/tabContainer" />
+
+    <!-- Main Content -->
+    <ScrollView
+        android:id="@+id/statsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/customNavContainer"
+        app:layout_constraintTop_toBottomOf="@id/tabIndicator">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Social & Messaging Category -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <!-- Category Header -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_social" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Social &amp; Messaging"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvSocialTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09h 41m"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <!-- Unproductive Label -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unproductive"
+                    android:textColor="#FF6B6B"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Progress Bar -->
+                <ProgressBar
+                    android:id="@+id/progressSocial"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:progress="49"
+                    android:progressDrawable="@drawable/progress_social"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Percentage -->
+                <TextView
+                    android:id="@+id/tvSocialPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="49%"
+                    android:textColor="#FF6B6B"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- App List -->
+                <LinearLayout
+                    android:id="@+id/appListContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Spotify -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_spotify" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Spotify"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02h 30m"
+                            android:textColor="#8C8C8C"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <com.example.timesync.CircularProgressView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+                    <!-- Twitter -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_twitter" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Twitter"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02h 30m"
+                            android:textColor="#8C8C8C"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <com.example.timesync.CircularProgressView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+                    <!-- YouTube -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_youtube" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Youtube"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02h 30m"
+                            android:textColor="#8C8C8C"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <com.example.timesync.CircularProgressView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+                    <!-- WhatsApp -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_whatsapp_new" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Whatsapp"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02h 30m"
+                            android:textColor="#8C8C8C"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <com.example.timesync.CircularProgressView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+
+                    <!-- Instagram -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_instagram" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Instagram"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="02h 30m"
+                            android:textColor="#8C8C8C"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <com.example.timesync.CircularProgressView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar (Not connected to any screens) -->
+    <LinearLayout
+        android:id="@+id/customNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#000000"
+        android:elevation="1000dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Home Icon -->
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_home_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Stats Icon -->
+        <ImageView
+            android:id="@+id/navStats"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_chart_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Add Icon -->
+        <ImageView
+            android:id="@+id/navAdd"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Tasks Icon -->
+        <ImageView
+            android:id="@+id/navTasks"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_tasks"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Profile Icon -->
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_person_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

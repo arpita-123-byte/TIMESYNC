@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A"
+    tools:context=".StatisticsActivity">
+
+    <!-- Header with title and date picker -->
+    <TextView
+        android:id="@+id/tvStatisticsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Statistics"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDateFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="#2A3B62"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatisticsTitle"
+        app:layout_constraintEnd_toStartOf="@+id/btnCalendar"
+        app:layout_constraintTop_toTopOf="@id/tvStatisticsTitle">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvDateFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="May 15"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/btnCalendar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_calendar"
+        app:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatisticsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvStatisticsTitle" />
+
+    <!-- Tabs for Overview and Categories -->
+    <LinearLayout
+        android:id="@+id/tabContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvStatisticsTitle">
+
+        <TextView
+            android:id="@+id/tabOverview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="OVERVIEW"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tabCategories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="CATEGORIES"
+            android:textColor="#FF4B55"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Indicator for selected tab -->
+    <View
+        android:id="@+id/tabIndicator"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="#2196F3"
+        app:layout_constraintStart_toStartOf="@id/tabOverview"
+        app:layout_constraintEnd_toEndOf="@id/tabOverview"
+        app:layout_constraintTop_toBottomOf="@id/tabContainer" />
+
+    <!-- Statistics Content -->
+    <ScrollView
+        android:id="@+id/statsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/customNavContainer"
+        app:layout_constraintTop_toBottomOf="@id/tabIndicator">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Main Stats Section -->
+            <LinearLayout
+                android:id="@+id/statsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Productive Time Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/blue_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Productive"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvProductiveTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:text="05h 32m"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Unproductive Time Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <View
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/red_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Unproductive"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvUnproductiveTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:text="03h 09m"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Calendar Section -->
+            <LinearLayout
+                android:id="@+id/calendarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+                
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Select Date"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/tvMonth"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="May"
+                            android:textColor="@android:color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:paddingStart="16dp" />
+
+                        <ImageButton
+                            android:id="@+id/btnPrevMonth"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_arrow_down"
+                            android:rotation="90"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Previous month" />
+
+                        <ImageButton
+                            android:id="@+id/btnNextMonth"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_arrow_down"
+                            android:rotation="270"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Next month" />
+                    </LinearLayout>
+
+                    <com.example.timesync.CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Custom Bottom Navigation Bar to match MainActivity -->
+    <LinearLayout
+        android:id="@+id/customNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#000000"
+        android:elevation="1000dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Home Icon -->
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_home_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Stats Icon -->
+        <ImageView
+            android:id="@+id/navStats"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_chart_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Add Icon -->
+        <ImageView
+            android:id="@+id/navAdd"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Empty Space (Removing Calendar Icon) -->
+        <ImageView
+            android:id="@+id/navTasks"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_tasks"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Profile Icon -->
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_person_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    
+    <!-- Hidden original navigation (keeping for functionality) -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:visibility="invisible"
+        android:background="#111827"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

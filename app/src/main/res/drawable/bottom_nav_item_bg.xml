@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <!-- Transparent background -->
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+            <!-- Clean white underline indicator -->
+            <item android:gravity="bottom">
+                <shape android:shape="rectangle">
+                    <size android:height="3dp" />
+                    <solid android:color="#FFFFFF" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <!-- Default transparent state -->
+        <color android:color="@android:color/transparent" />
+    </item>
+</selector> 

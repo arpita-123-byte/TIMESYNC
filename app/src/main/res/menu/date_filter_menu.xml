@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/filter_today"
+        android:icon="@drawable/ic_clock"
+        android:title="Today" />
+    <item
+        android:id="@+id/filter_yesterday"
+        android:icon="@drawable/ic_clock"
+        android:title="Yesterday" />
+    <item
+        android:id="@+id/filter_this_week"
+        android:icon="@drawable/ic_calendar"
+        android:title="This Week" />
+    <item
+        android:id="@+id/filter_last_week"
+        android:icon="@drawable/ic_calendar"
+        android:title="Last Week" />
+    <item
+        android:id="@+id/filter_this_month"
+        android:icon="@drawable/ic_calendar"
+        android:title="This Month" />
+    <item
+        android:id="@+id/filter_custom"
+        android:icon="@drawable/ic_calendar"
+        android:title="Custom Range" />
+</menu> 

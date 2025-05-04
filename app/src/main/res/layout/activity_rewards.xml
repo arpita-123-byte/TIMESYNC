@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A1A"
+    tools:context=".RewardsActivity">
+
+    <!-- Status Bar - Time -->
+
+    <!-- Status Bar Icons - Battery, WiFi, etc. would be right aligned -->
+    <LinearLayout
+        android:id="@+id/statusBarIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        
+        <!-- Status icons would be added here -->
+    </LinearLayout>
+
+    <!-- Top AppBar with Menu and Profile -->
+
+    <!-- Main Content -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="3dp">
+
+        <!-- Hamburger Menu Button -->
+        <ImageView
+            android:id="@+id/menuButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Profile Name -->
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Sabrina Aryan"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/menuButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Search Button -->
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/profilePic"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/profile_pic"
+            android:tint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintBottom_toTopOf="@id/customNavContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Diamond Icon with Level -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/diamondIconContainer"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="#2E2E4E"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_diamond"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Level Text -->
+            <TextView
+                android:id="@+id/levelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lvl 1"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Progress Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <!-- Study Progress -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Heart Icon -->
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_heart"
+                        android:tint="#FF6B81"/>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar
+                        android:id="@+id/studyProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="8dp"
+                        android:progressDrawable="@drawable/custom_progress_red"
+                        android:progress="58"/>
+
+                    <!-- Progress Text -->
+                    <TextView
+                        android:id="@+id/studyProgressText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="29/50"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"/>
+
+                    <!-- Category -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Study"
+                        android:textColor="#858585"
+                        android:textSize="16sp"
+                        android:layout_marginStart="16dp"/>
+                </LinearLayout>
+
+                <!-- Experience Progress -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Star Icon -->
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_star"
+                        android:tint="#FFD700"/>
+
+                    <!-- Progress Bar -->
+                    <ProgressBar
+                        android:id="@+id/experienceProgressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="12dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="8dp"
+                        android:progressDrawable="@drawable/custom_progress_yellow"
+                        android:progress="48"/>
+
+                    <!-- Progress Text -->
+                    <TextView
+                        android:id="@+id/experienceProgressText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12/25"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"/>
+
+                    <!-- Category -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Experience"
+                        android:textColor="#858585"
+                        android:textSize="16sp"
+                        android:layout_marginStart="16dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            
+            <!-- Coin/Gem Balance Display -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Coin Balance -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_coin"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/coinBalanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.02"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:layout_marginStart="4dp"/>
+                </LinearLayout>
+
+                <!-- Gem Balance -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="24dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_diamond"
+                        android:padding="4dp"/>
+
+                    <TextView
+                        android:id="@+id/gemBalanceText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:layout_marginStart="4dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Reward Yourself Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/rewardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reward yourself"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/rewardSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Have a treat"
+                    android:textColor="#858585"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"/>
+
+                <!-- Reward Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="end"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#3A3A3A">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_coin"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:id="@+id/rewardCardBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="#FFFFFF"
+                            android:textSize="24sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Rewards Grid -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <!-- 10 Coins Reward -->
+                    <LinearLayout
+                        android:id="@+id/reward10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#2A2A2A"
+                        android:padding="16dp"
+                        android:layout_marginEnd="4dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_trophy"
+                            android:layout_marginBottom="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_coin"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 20 Coins Reward -->
+                    <LinearLayout
+                        android:id="@+id/reward20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#2A2A2A"
+                        android:padding="16dp"
+                        android:layout_marginHorizontal="4dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_coin_big"
+                            android:layout_marginBottom="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_coin"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 30 Coins Reward -->
+                    <LinearLayout
+                        android:id="@+id/reward30"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#2A2A2A"
+                        android:padding="16dp"
+                        android:layout_marginHorizontal="4dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_trophy"
+                            android:layout_marginBottom="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_coin"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 40 Coins Reward -->
+                    <LinearLayout
+                        android:id="@+id/reward40"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="#2A2A2A"
+                        android:padding="16dp"
+                        android:layout_marginStart="4dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_coin_big"
+                            android:layout_marginBottom="8dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_coin"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="40"
+                                android:textColor="#FFFFFF"
+                                android:textSize="16sp"
+                                android:layout_marginStart="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation Bar with Custom Icons -->
+    <LinearLayout
+        android:id="@+id/customNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#000000"
+        android:elevation="1000dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Home Icon -->
+        <ImageView
+            android:id="@+id/navHome"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_home_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Stats Icon -->
+        <ImageView
+            android:id="@+id/navStats"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_chart_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Add Icon -->
+        <ImageView
+            android:id="@+id/navAdd"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Tasks Icon (Rewards in this case) -->
+        <ImageView
+            android:id="@+id/navTasks"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_tasks"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+
+        <!-- Profile Icon -->
+        <ImageView
+            android:id="@+id/navProfile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_person_white"
+            android:padding="15dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout> 
