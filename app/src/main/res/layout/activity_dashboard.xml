@@ -615,7 +615,7 @@
         <ImageView
             android:id="@+id/navStats"
             android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_height="59dp"
             android:src="@drawable/ic_chart_white"
             app:tint="#4F74FF"
             android:padding="15dp"
