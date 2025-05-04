@@ -497,7 +497,7 @@
                         android:textColor="#2196F3"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
-
+<!--hello-->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -617,7 +617,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_chart_white"
-            android:tint="#4F74FF"
+            app:tint="#4F74FF"
             android:padding="15dp"
             android:layout_weight="1"/>
 
