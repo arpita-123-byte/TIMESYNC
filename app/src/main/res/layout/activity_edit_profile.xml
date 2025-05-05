@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/circle_background"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Profile Image Section -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/profile_placeholder"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#DDDDDD"/>
+
+            <ImageView
+                android:id="@+id/btnCamera"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|end"
+                android:background="@drawable/circle_background"
+                android:padding="8dp"
+                android:src="@drawable/ic_camera"/>
+        </FrameLayout>
+
+        <!-- Edit Profile Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- First Name -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter first name"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Last Name -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter last name"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Username -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter username"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Email -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter email"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Phone Number -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter phone number"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="phone"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Gender -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:textColor="#555555"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_background"
+            android:hint="Enter gender"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:inputType="text"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Change Password Button -->
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:background="@drawable/change_password_button_background"
+            android:padding="16dp"
+            android:drawableEnd="@drawable/ic_lock"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- OK Button -->
+        <Button
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:background="@drawable/save_button_background"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView> 

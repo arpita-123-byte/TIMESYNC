@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "81710597940",
+    "project_id": "timesync-24731",
+    "storage_bucket": "timesync-24731.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81710597940:android:c96100d44bc52ed4374761",
+        "android_client_info": {
+          "package_name": "com.example.timesync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFE0uh3qwV5KkiSMeHyR6tIU9ms1V9YNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

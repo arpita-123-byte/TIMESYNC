@@ -63,6 +63,7 @@ public class GoalsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         navigateBackToAppStats();
+        super.onBackPressed();
     }
     
     private void setupBottomNavigation() {

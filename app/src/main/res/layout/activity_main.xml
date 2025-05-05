@@ -15,6 +15,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Reminder Test Buttons -->
+    <LinearLayout
+        android:id="@+id/reminderButtonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp">
+        
+        <Button
+            android:id="@+id/btnScheduleReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:text="Schedule Reminder"
+            android:textColor="#FFFFFF"
+            android:background="#2196F3" />
+            
+        <Button
+            android:id="@+id/btnTestReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:text="Test Reminder"
+            android:textColor="#FFFFFF"
+            android:background="#2196F3" />
+    </LinearLayout>
+
     <!-- Top Bar -->
 
     <TextView

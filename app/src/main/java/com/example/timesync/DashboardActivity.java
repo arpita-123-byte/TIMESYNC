@@ -186,12 +186,12 @@ public class DashboardActivity extends AppCompatActivity {
             highlightNavIcon(navStats);
         });
         
-        // Add icon - navigate to MainActivity
+        // Add icon - navigate to StatisticsActivity
         navAdd.setOnClickListener(v -> {
             highlightNavIcon(navAdd);
-            Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, StatisticsActivity.class);
             startActivity(intent);
-            // Don't finish this activity to allow back navigation
+            finish(); // Finish this activity for consistent navigation
         });
         
         // Tasks icon - navigate to Rewards

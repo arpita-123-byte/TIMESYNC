@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.8.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.8.0)" variant="fatal" version="8.8.0">
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabCategories` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintStart_toStartOf=&quot;@id/tabCategories&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_app_statistics.xml"
+            line="130"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabCategories` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintEnd_toEndOf=&quot;@id/tabCategories&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_app_statistics.xml"
+            line="131"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabOverview` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintStart_toStartOf=&quot;@id/tabOverview&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="119"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabOverview` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintEnd_toEndOf=&quot;@id/tabOverview&quot;/>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="120"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabOverview` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintStart_toStartOf=&quot;@id/tabOverview&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_statistics.xml"
+            line="112"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="NotSibling"
+        message="`@id/tabOverview` is not a sibling in the same `ConstraintLayout`"
+        errorLine1="        app:layout_constraintEnd_toEndOf=&quot;@id/tabOverview&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_statistics.xml"
+            line="113"
+            column="9"/>
+    </issue>
+
+</issues>

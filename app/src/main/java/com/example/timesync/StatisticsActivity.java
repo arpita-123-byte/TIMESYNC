@@ -6,128 +6,85 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.PopupMenu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class StatisticsActivity extends AppCompatActivity {
+    private TextView tvTotalTime;
     private TextView tvProductiveTime;
     private TextView tvUnproductiveTime;
+    private TextView tvProductivityScore;
+    private TextView tvProductivityPercent;
     private TextView tvDateFilter;
-    private TextView tvMonth;
     private TextView tabOverview;
     private TextView tabCategories;
     private View tabIndicator;
-    private CalendarView calendarView;
     private CardView cardDateFilter;
     private ImageButton btnCalendar;
-    private ImageButton btnPrevMonth;
-    private ImageButton btnNextMonth;
-    private LinearLayout statsContainer;
-    private LinearLayout calendarContainer;
+    private CircularProgressView productivityGauge;
     
-    private Calendar currentDate = Calendar.getInstance();
-    private String currentDateFilter = "May 15";
+    // Bottom navigation
+    private ImageView navHome;
+    private ImageView navStats;
+    private ImageView navAdd;
+    private ImageView navGoals;
+    private ImageView navProfile;
     
-    private StatsRepository statsRepository;
-    private boolean isCalendarVisible = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         
-        // Initialize repository
-        statsRepository = StatsRepository.getInstance();
-        
         // Initialize views
-        tvProductiveTime = findViewById(R.id.tvProductiveTime);
-        tvUnproductiveTime = findViewById(R.id.tvUnproductiveTime);
-        tvDateFilter = findViewById(R.id.tvDateFilter);
-        tvMonth = findViewById(R.id.tvMonth);
-        tabOverview = findViewById(R.id.tabOverview);
-        tabCategories = findViewById(R.id.tabCategories);
-        tabIndicator = findViewById(R.id.tabIndicator);
-        calendarView = findViewById(R.id.calendarView);
-        cardDateFilter = findViewById(R.id.cardDateFilter);
-        btnCalendar = findViewById(R.id.btnCalendar);
-        btnPrevMonth = findViewById(R.id.btnPrevMonth);
-        btnNextMonth = findViewById(R.id.btnNextMonth);
-        statsContainer = findViewById(R.id.statsContainer);
-        calendarContainer = findViewById(R.id.calendarContainer);
-        
-        // Set up calendar
-        tvMonth.setText(calendarView.getCurrentMonthName());
-        
-        // Initialize with today's date selected
-        calendarView.setSelectedDate(Calendar.getInstance());
-        
-        // Initially hide the calendar
-        calendarContainer.setVisibility(View.GONE);
+        initializeViews();
         
         // Set up tabs
         setupTabs();
         
-        // Set up previous month button
-        btnPrevMonth.setOnClickListener(v -> {
-            calendarView.previousMonth();
-            tvMonth.setText(calendarView.getCurrentMonthName());
-        });
+        // Set up date filter
+        setupDateFilter();
         
-        // Set up next month button
-        btnNextMonth.setOnClickListener(v -> {
-            calendarView.nextMonth();
-            tvMonth.setText(calendarView.getCurrentMonthName());
-        });
-        
-        // Set up custom bottom navigation
+        // Set up bottom navigation
         setupBottomNavigation();
         
-        // Set up date filter dropdown
-        cardDateFilter.setOnClickListener(v -> {
-            showDateFilterOptions();
-        });
-        
-        // Set up calendar button to toggle calendar visibility
-        btnCalendar.setOnClickListener(v -> {
-            toggleCalendarVisibility();
-        });
-        
-        // Set up calendar date selection
-        calendarView.setOnDateSelectedListener(selectedDate -> {
-            currentDate = selectedDate;
-            
-            // Format the date as "Month Day" (e.g., "May 15")
-            currentDateFilter = String.format(Locale.getDefault(), "%tB %td", 
-                    selectedDate, selectedDate);
-            
-            tvDateFilter.setText(currentDateFilter);
-            updateStats();
-        });
-        
-        // Load initial stats
-        updateStats();
+        // Update UI with statistics
+        updateStatistics();
     }
     
-    /**
-     * Set up tab selection behavior
-     */
+    private void initializeViews() {
+        tvTotalTime = findViewById(R.id.tvTotalTime);
+        tvProductiveTime = findViewById(R.id.tvProductiveTime);
+        tvUnproductiveTime = findViewById(R.id.tvUnproductiveTime);
+        tvProductivityScore = findViewById(R.id.tvProductivityScore);
+        tvProductivityPercent = findViewById(R.id.tvProductivityPercent);
+        tvDateFilter = findViewById(R.id.tvDateFilter);
+        tabOverview = findViewById(R.id.tabOverview);
+        tabCategories = findViewById(R.id.tabCategories);
+        tabIndicator = findViewById(R.id.tabIndicator);
+        cardDateFilter = findViewById(R.id.cardDateFilter);
+        btnCalendar = findViewById(R.id.btnCalendar);
+        productivityGauge = findViewById(R.id.productivityGauge);
+        
+        // Bottom navigation
+        navHome = findViewById(R.id.navHome);
+        navStats = findViewById(R.id.navStats);
+        navAdd = findViewById(R.id.navAdd);
+        navGoals = findViewById(R.id.navGoals);
+        navProfile = findViewById(R.id.navProfile);
+    }
+    
     private void setupTabs() {
-        // Overview tab click
+        // Overview tab click (already selected)
         tabOverview.setOnClickListener(v -> {
             selectTab(true);
         });
@@ -135,245 +92,170 @@ public class StatisticsActivity extends AppCompatActivity {
         // Categories tab click
         tabCategories.setOnClickListener(v -> {
             selectTab(false);
-            
-            // Launch the new App Statistics screen
+            // Navigate to categories
             Intent intent = new Intent(this, AppStatisticsActivity.class);
             startActivity(intent);
         });
     }
     
-    /**
-     * Select tab and update UI
-     */
     private void selectTab(boolean isOverview) {
         // Update tab text colors
-        tabOverview.setTextColor(isOverview ? Color.WHITE : Color.parseColor("#FF4B55"));
-        tabCategories.setTextColor(isOverview ? Color.parseColor("#FF4B55") : Color.WHITE);
+        tabOverview.setTextColor(isOverview ? Color.WHITE : Color.parseColor("#A0A0A0"));
+        tabCategories.setTextColor(isOverview ? Color.parseColor("#A0A0A0") : Color.WHITE);
         
-        // Keep bold for both tabs
-        tabOverview.setTypeface(null, Typeface.BOLD);
-        tabCategories.setTypeface(null, Typeface.BOLD);
+        // Update tab styles
+        tabOverview.setTypeface(null, isOverview ? Typeface.BOLD : Typeface.NORMAL);
+        tabCategories.setTypeface(null, isOverview ? Typeface.NORMAL : Typeface.BOLD);
         
-        // Update indicator position
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) tabIndicator.getLayoutParams();
-        if (isOverview) {
-            params.startToStart = R.id.tabOverview;
-            params.endToEnd = R.id.tabOverview;
-            params.startToEnd = ConstraintLayout.LayoutParams.UNSET;
-            params.endToStart = ConstraintLayout.LayoutParams.UNSET;
-        } else {
-            params.startToStart = R.id.tabCategories;
-            params.endToEnd = R.id.tabCategories;
-            params.startToEnd = ConstraintLayout.LayoutParams.UNSET;
-            params.endToStart = ConstraintLayout.LayoutParams.UNSET;
-        }
-        tabIndicator.setLayoutParams(params);
+        // Move indicator
+        tabIndicator.animate()
+                .x(isOverview ? tabOverview.getX() : tabCategories.getX())
+                .setDuration(200)
+                .start();
     }
     
-    /**
-     * Toggle calendar visibility
-     */
-    private void toggleCalendarVisibility() {
-        isCalendarVisible = !isCalendarVisible;
+    private void setupDateFilter() {
+        // Set up date filter dropdown
+        cardDateFilter.setOnClickListener(v -> {
+            showDateFilterOptions();
+        });
         
-        // Show/hide calendar but always keep stats visible
-        if (isCalendarVisible) {
-            calendarContainer.setVisibility(View.VISIBLE);
-        } else {
-            calendarContainer.setVisibility(View.GONE);
-        }
-        
-        // Always keep stats visible
-        statsContainer.setVisibility(View.VISIBLE);
+        // Set up calendar button
+        btnCalendar.setOnClickListener(v -> {
+            // Show calendar picker
+            showDatePicker();
+        });
     }
     
-    /**
-     * Get yesterday's date
-     */
-    private Calendar getYesterday() {
-        Calendar yesterday = Calendar.getInstance();
-        yesterday.add(Calendar.DAY_OF_MONTH, -1);
-        return yesterday;
-    }
-
-    /**
-     * Shows date filter options in a popup menu
-     */
     private void showDateFilterOptions() {
         PopupMenu popup = new PopupMenu(this, cardDateFilter);
         popup.getMenuInflater().inflate(R.menu.date_filter_menu, popup.getMenu());
         
-        // Apply custom styling if needed
-        try {
-            // Use reflection to get the popup menu's field and apply custom styling
-            java.lang.reflect.Field field = popup.getClass().getDeclaredField("mPopup");
-            field.setAccessible(true);
-            Object menuPopupHelper = field.get(popup);
-            Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
-            java.lang.reflect.Method method = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
-            method.invoke(menuPopupHelper, true);
-            
-            // Tint all menu icons to dark color
-            for (int i = 0; i < popup.getMenu().size(); i++) {
-                MenuItem item = popup.getMenu().getItem(i);
-                if (item.getIcon() != null) {
-                    item.getIcon().setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        // Set listener for option selection
         popup.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             
             if (itemId == R.id.filter_today) {
-                currentDateFilter = "Today";
-                currentDate = Calendar.getInstance();
+                tvDateFilter.setText("Today");
             } else if (itemId == R.id.filter_yesterday) {
-                currentDateFilter = "Yesterday";
-                currentDate = Calendar.getInstance();
-                currentDate.add(Calendar.DAY_OF_MONTH, -1);
+                tvDateFilter.setText("Yesterday");
             } else if (itemId == R.id.filter_this_week) {
-                currentDateFilter = "This Week";
-                currentDate = Calendar.getInstance();
-                // Start of current week (Monday)
-                currentDate.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                tvDateFilter.setText("This Week");
             } else if (itemId == R.id.filter_last_week) {
-                currentDateFilter = "Last Week";
-                currentDate = Calendar.getInstance();
-                // Start of last week
-                currentDate.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                currentDate.add(Calendar.DAY_OF_MONTH, -7);
+                tvDateFilter.setText("Last Week");
             } else if (itemId == R.id.filter_this_month) {
-                currentDateFilter = "This Month";
-                currentDate = Calendar.getInstance();
-                currentDate.set(Calendar.DAY_OF_MONTH, 1);
-            } else if (itemId == R.id.filter_custom) {
-                // In a real app, this would show a date picker
-                // For now, just use today's date
-                currentDateFilter = "Custom Range";
-                currentDate = Calendar.getInstance();
-                return true;
+                tvDateFilter.setText("This Month");
             } else {
                 return false;
             }
             
-            tvDateFilter.setText(currentDateFilter);
-            updateStats();
+            updateStatistics();
             return true;
         });
         
         popup.show();
     }
     
-    /**
-     * Update statistics display based on current date
-     */
-    private void updateStats() {
-        TimeStats stats = statsRepository.getStatsForDate(currentDate);
-        
-        // Update UI
-        tvProductiveTime.setText(TimeStats.formatTime(stats.getProductiveTimeMillis()));
-        tvUnproductiveTime.setText(TimeStats.formatTime(stats.getUnproductiveTimeMillis()));
+    private void showDatePicker() {
+        // In a real app, show a date picker dialog
+        // For now, just toggle between dates
+        if (tvDateFilter.getText().equals("Today")) {
+            tvDateFilter.setText("Yesterday");
+        } else {
+            tvDateFilter.setText("Today");
+        }
+        updateStatistics();
     }
     
-    /**
-     * Sets up bottom navigation with manual icons
-     */
-    private void setupBottomNavigation() {
-        // Get references to navigation icons
-        ImageView navHome = findViewById(R.id.navHome);
-        ImageView navStats = findViewById(R.id.navStats);
-        ImageView navAdd = findViewById(R.id.navAdd);
-        ImageView navTasks = findViewById(R.id.navTasks);
-        ImageView navProfile = findViewById(R.id.navProfile);
+    private void updateStatistics() {
+        // This would normally fetch data from a repository
+        // For now, set fixed values to match the UI design
         
-        // Home icon - navigate to ActivitiesActivity
+        // Set total time
+        tvTotalTime.setText("09h 41m");
+        
+        // Set productive time
+        tvProductiveTime.setText("05h 32m");
+        
+        // Set unproductive time
+        tvUnproductiveTime.setText("03h 09m");
+        
+        // Set productivity score
+        tvProductivityScore.setText("56.9");
+        
+        // Set productivity percentage change
+        tvProductivityPercent.setText("↑ 4.5%");
+        
+        // Set progress on the productivity gauge (0-100)
+        if (productivityGauge != null) {
+            productivityGauge.setProgress(56.9f);
+        }
+    }
+    
+    private void setupBottomNavigation() {
+        // Home icon - navigate to Activities
         navHome.setOnClickListener(v -> {
-            highlightNavIcon(navHome);
             Intent intent = new Intent(this, ActivitiesActivity.class);
             startActivity(intent);
             finish();
         });
         
-        // Stats icon - navigate to DashboardActivity
+        // Stats icon - navigate to Dashboard
         navStats.setOnClickListener(v -> {
-            highlightNavIcon(navStats);
             Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
             finish();
         });
         
-        // Add icon - navigate to MainActivity 
+        // Add icon - already on StatisticsActivity
         navAdd.setOnClickListener(v -> {
+            // Already on this screen, just provide visual feedback
             highlightNavIcon(navAdd);
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
         });
         
-        // Tasks icon - navigate to Rewards
-        navTasks.setOnClickListener(v -> {
-            highlightNavIcon(navTasks);
+        // Goals icon - navigate to Rewards
+        navGoals.setOnClickListener(v -> {
             Intent intent = new Intent(this, RewardsActivity.class);
             startActivity(intent);
             finish();
         });
         
-        // Profile icon - navigate to profile
+        // Profile icon - navigate to Profile
         navProfile.setOnClickListener(v -> {
-            highlightNavIcon(navProfile);
-            Intent intent = new Intent(StatisticsActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
             finish();
         });
         
-        // Highlight the first icon (Home) to match the image
-        highlightNavIcon(navHome);
+        // Highlight the Add icon by default
+        highlightNavIcon(navAdd);
     }
     
-    /**
-     * Check if two dates represent the same day
-     */
-    private boolean isSameDay(Calendar date1, Calendar date2) {
-        return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
-               date1.get(Calendar.MONTH) == date2.get(Calendar.MONTH) &&
-               date1.get(Calendar.DAY_OF_MONTH) == date2.get(Calendar.DAY_OF_MONTH);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Navigate back to MainActivity
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    /**
-     * Highlights the selected navigation icon and clears others
-     */
     private void highlightNavIcon(ImageView selectedIcon) {
-        // Remove highlight from all icons
-        findViewById(R.id.navHome).setBackgroundResource(0);
-        findViewById(R.id.navStats).setBackgroundResource(0);
-        findViewById(R.id.navAdd).setBackgroundResource(0);
-        findViewById(R.id.navTasks).setBackgroundResource(0);
-        findViewById(R.id.navProfile).setBackgroundResource(0);
+        // Reset tints
+        navHome.setColorFilter(null);
+        navStats.setColorFilter(null);
+        navAdd.setColorFilter(null);
+        navGoals.setColorFilter(null);
+        navProfile.setColorFilter(null);
         
-        // Update tint colors - reset all to default first
-        ((ImageView)findViewById(R.id.navHome)).setColorFilter(null);
-        ((ImageView)findViewById(R.id.navStats)).setColorFilter(null);
-        ((ImageView)findViewById(R.id.navAdd)).setColorFilter(null);
-        ((ImageView)findViewById(R.id.navTasks)).setColorFilter(null);
-        ((ImageView)findViewById(R.id.navProfile)).setColorFilter(null);
-        
-        // Set selected icon tint to blue
+        // Set selected icon tint
         selectedIcon.setColorFilter(getResources().getColor(android.R.color.holo_blue_light));
         
-        // Add animation effect
-        ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();
-        ObjectAnimator.ofFloat(selectedIcon, "scaleY", 1f, 1.2f, 1f).setDuration(300).start();
+        // Add subtle animation
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(selectedIcon, "scaleY", 1f, 1.2f, 1f);
+        scaleX.setDuration(300);
+        scaleY.setDuration(300);
+        scaleX.start();
+        scaleY.start();
+    }
+    
+    @Override
+    public void onBackPressed() {
+        // Navigate to ActivitiesActivity instead of standard back behavior
+        Intent intent = new Intent(this, ActivitiesActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 } 

@@ -110,12 +110,12 @@ public class RewardsActivity extends AppCompatActivity {
             // Don't finish this activity to allow back navigation
         });
         
-        // Add icon - navigate to MainActivity
+        // Add icon - navigate to StatisticsActivity
         navAdd.setOnClickListener(v -> {
             highlightNavIcon(navAdd);
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, StatisticsActivity.class);
             startActivity(intent);
-            // Don't finish this activity to allow back navigation
+            finish(); // Finish this activity for consistent navigation
         });
         
         // Tasks icon - already on this page (RewardsActivity)

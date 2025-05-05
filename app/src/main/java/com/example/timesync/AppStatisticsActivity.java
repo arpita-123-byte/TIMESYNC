@@ -242,6 +242,7 @@ public class AppStatisticsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
         finish();
+        super.onBackPressed();
     }
     
     /**

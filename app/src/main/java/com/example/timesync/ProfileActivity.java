@@ -8,6 +8,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import android.widget.TextView;
 
 /**
  * ProfileActivity displays the user profile information and settings.
@@ -44,7 +48,21 @@ public class ProfileActivity extends AppCompatActivity {
      */
     private void setupProfileSection() {
         findViewById(R.id.btnEditProfile).setOnClickListener(v -> {
-            Toast.makeText(this, "Edit Profile clicked", Toast.LENGTH_SHORT).show();
+            // Launch EditProfileActivity
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            // Pass current profile data if available
+            TextView profileName = findViewById(R.id.profileName);
+            TextView profileEmail = findViewById(R.id.profileEmail);
+            
+            if (profileName != null) {
+                intent.putExtra("name", profileName.getText().toString());
+            }
+            
+            if (profileEmail != null) {
+                intent.putExtra("email", profileEmail.getText().toString());
+            }
+            
+            startActivityForResult(intent, 1001);
         });
         
         findViewById(R.id.btnCamera).setOnClickListener(v -> {
@@ -68,12 +86,14 @@ public class ProfileActivity extends AppCompatActivity {
         
         // FAQs
         findViewById(R.id.faqsItem).setOnClickListener(v -> {
-            Toast.makeText(this, "FAQs clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProfileActivity.this, FAQActivity.class);
+            startActivity(intent);
         });
         
         // Contact Us
         findViewById(R.id.contactUsItem).setOnClickListener(v -> {
-            Toast.makeText(this, "Contact Us clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProfileActivity.this, ContactUsActivity.class);
+            startActivity(intent);
         });
         
         // Subscription
@@ -99,7 +119,13 @@ public class ProfileActivity extends AppCompatActivity {
         // Log Out
         findViewById(R.id.logOutItem).setOnClickListener(v -> {
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-            // In a real app, this would handle actual logout
+            
+            // Navigate to Sign In screen
+            Intent intent = new Intent(ProfileActivity.this, SignInActivity.class);
+            // Clear all activities in the stack to prevent going back to profile after logout
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -130,10 +156,10 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         });
         
-        // Add icon - navigate to MainActivity
+        // Add icon - navigate to StatisticsActivity
         navAdd.setOnClickListener(v -> {
             highlightNavIcon(navAdd);
-            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+            Intent intent = new Intent(ProfileActivity.this, StatisticsActivity.class);
             startActivity(intent);
             finish();
         });
@@ -180,5 +206,45 @@ public class ProfileActivity extends AppCompatActivity {
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();
         ObjectAnimator.ofFloat(selectedIcon, "scaleY", 1f, 1.2f, 1f).setDuration(300).start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if (requestCode == 1001 && resultCode == RESULT_OK && data != null) {
+            // Handle profile update result
+            String firstName = data.getStringExtra("firstName");
+            String lastName = data.getStringExtra("lastName");
+            String email = data.getStringExtra("email");
+            String profileImageUri = data.getStringExtra("profileImage");
+            
+            // Update UI with new profile data
+            TextView profileName = findViewById(R.id.profileName);
+            TextView profileEmail = findViewById(R.id.profileEmail);
+            ImageView profileImage = findViewById(R.id.profileImage);
+            
+            if (profileName != null && firstName != null) {
+                String fullName = firstName;
+                if (lastName != null && !lastName.isEmpty()) {
+                    fullName += " " + lastName;
+                }
+                profileName.setText(fullName);
+            }
+            
+            if (profileEmail != null && email != null) {
+                profileEmail.setText(email);
+            }
+            
+            if (profileImage != null && profileImageUri != null) {
+                try {
+                    Uri imageUri = Uri.parse(profileImageUri);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                    profileImage.setImageBitmap(bitmap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 } 

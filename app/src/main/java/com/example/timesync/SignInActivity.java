@@ -52,15 +52,21 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to forgot password screen
-                // For now, just show a toast
-                Toast.makeText(SignInActivity.this, "Forgot password functionality not implemented yet", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
+                String email = emailEditText.getText().toString().trim();
+                if (!email.isEmpty()) {
+                    intent.putExtra("email", email);
+                }
+                startActivity(intent);
             }
         });
 
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate back to welcome screen
+                // Navigate to sign up screen
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -136,17 +142,41 @@ public class SignInActivity extends AppCompatActivity {
             return;
         }
 
-        // For demonstration purposes, we'll just navigate to the main activity
-        // In a real app, you would verify credentials with a server
-        navigateToMainActivity();
+        // Authenticate user with UserManager
+        UserManager userManager = UserManager.getInstance(this);
+        
+        // Check if user exists
+        if (!userManager.isUserRegistered(email)) {
+            emailEditText.setError("This email is not registered. Please sign up first.");
+            emailEditText.requestFocus();
+            return;
+        }
+        
+        // Authenticate user
+        if (userManager.authenticateUser(email, password)) {
+            // Authentication successful, navigate to main activity
+            navigateToMainActivity();
+        } else {
+            // Authentication failed, show error
+            passwordEditText.setError("Incorrect password");
+            passwordEditText.requestFocus();
+        }
     }
 
     /**
      * Navigate to the main activity after successful login
      */
     private void navigateToMainActivity() {
-        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+        // Save logged in user email to shared preferences
+        String email = emailEditText.getText().toString().trim();
+        getSharedPreferences("TimeSync_Login", MODE_PRIVATE)
+                .edit()
+                .putString("logged_in_user", email)
+                .apply();
+        
+        Intent intent = new Intent(SignInActivity.this, ActivitiesActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish(); // Close this activity so the user can't go back to login screen using back button
     }
 } 

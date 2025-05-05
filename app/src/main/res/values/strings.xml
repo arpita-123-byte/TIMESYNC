@@ -16,4 +16,6 @@
     <string name="phone_number">Phone Number</string>
     <string name="enter_phone">Enter your phone number</string>
     <string name="create_password">Create a password</string>
+    <string name="app_logo">App Logo</string>
+    <string name="virtual_assistant">Virtual Assistant</string>
 </resources>

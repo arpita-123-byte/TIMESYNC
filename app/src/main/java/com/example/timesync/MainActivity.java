@@ -28,6 +28,12 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import android.content.SharedPreferences;
+import android.widget.Toast;
+import java.util.Calendar;
+import android.net.Uri;
+import android.provider.Settings;
+import android.os.Build;
 
 /**
  * MainActivity displays the statistics dashboard with tabs, overview, and app usage list.
@@ -45,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Request overlay permission for reminders
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            Toast.makeText(this, "Please grant overlay permission for reminders", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, 
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, 100);
+        }
+        
         setupTopBar();
         setupTabs();
         setupScoreChart();
@@ -91,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 }, 1000);
             }, 500);
         }, 100);
+
+        // Example of setting up reminder functionality for a timetable
+        setupReminderFeature();
     }
 
     /**
@@ -278,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
             // Special handling for YouTube to ensure its progress is visible
             if (app.appName.equals("YouTube")) {
                 // Use a more noticeable color for YouTube's low productivity
-                progressCircle.setProgressColor(Color.parseColor("#FF3D00"));
+                progressCircle.setProgressColors(Color.parseColor("#FF3D00"), Color.parseColor("#FF3D00"));
                 
                 // Add a subtle highlight effect
                 progressCircle.setElevation(4f);
@@ -287,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
             // Special handling for Twitter to make it more visible
             if (app.appName.equals("Twitter")) {
                 // Use a distinct Twitter blue for the progress circle
-                progressCircle.setProgressColor(Color.parseColor("#1DA1F2"));
+                progressCircle.setProgressColors(Color.parseColor("#1DA1F2"), Color.parseColor("#1DA1F2"));
                 
                 // Add a highlight effect
                 progressCircle.setElevation(4f);
@@ -412,5 +429,81 @@ public class MainActivity extends AppCompatActivity {
         // Add animation effect
         ObjectAnimator.ofFloat(selectedIcon, "scaleX", 1f, 1.2f, 1f).setDuration(300).start();
         ObjectAnimator.ofFloat(selectedIcon, "scaleY", 1f, 1.2f, 1f).setDuration(300).start();
+    }
+
+    /**
+     * Set up reminder functionality for timetable events.
+     */
+    private void setupReminderFeature() {
+        // This is an example of how to schedule a reminder
+        Button btnScheduleReminder = findViewById(R.id.btnScheduleReminder);
+        if (btnScheduleReminder != null) {
+            btnScheduleReminder.setOnClickListener(v -> {
+                scheduleExampleReminder();
+            });
+        }
+        
+        // This is an example of how to show a reminder dialog immediately for testing
+        Button btnTestReminder = findViewById(R.id.btnTestReminder);
+        if (btnTestReminder != null) {
+            btnTestReminder.setOnClickListener(v -> {
+                showTestReminderDialog();
+            });
+        }
+    }
+    
+    /**
+     * Schedule an example reminder for 1 minute from now.
+     */
+    private void scheduleExampleReminder() {
+        // Get the current time
+        Calendar calendar = Calendar.getInstance();
+        
+        // Add 1 minute to the current time for a quick test
+        calendar.add(Calendar.MINUTE, 1);
+        
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        
+        // Save the reminder details to SharedPreferences for persistence
+        SharedPreferences prefs = getSharedPreferences("TimeSync_Reminders", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("has_reminders", true);
+        editor.putInt("reminder_hour", hour);
+        editor.putInt("reminder_minute", minute);
+        editor.putString("reminder_task", "Study Session");
+        editor.apply();
+        
+        // Schedule the reminder
+        ReminderManager.getInstance(this).scheduleReminderForTime("Study Session", hour, minute);
+        
+        Toast.makeText(this, "Reminder scheduled for " + hour + ":" + 
+                (minute < 10 ? "0" + minute : minute), Toast.LENGTH_SHORT).show();
+    }
+    
+    /**
+     * Show a test reminder dialog immediately.
+     */
+    private void showTestReminderDialog() {
+        ReminderManager.getInstance(this).showReminderDialog(
+                this,
+                "Study Session",
+                () -> Toast.makeText(this, "Task started!", Toast.LENGTH_SHORT).show()
+        );
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Settings.canDrawOverlays(this)) {
+                    Toast.makeText(this, "Overlay permission granted!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Overlay permission denied. Reminders will show as notifications only.", 
+                        Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 }

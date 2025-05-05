@@ -129,19 +129,23 @@ public class ActivitiesActivity extends AppCompatActivity {
         navStats.setOnClickListener(v -> {
             Intent intent = new Intent(ActivitiesActivity.this, DashboardActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         });
         
-        // Add icon should open AddTaskActivity
+        // Add icon should open StatisticsActivity
         navAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivitiesActivity.this, AddTaskActivity.class);
+            Intent intent = new Intent(ActivitiesActivity.this, StatisticsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
         });
         
         // Goals/Tasks icon should point to RewardsActivity
         navGoals.setOnClickListener(v -> {
             Intent intent = new Intent(ActivitiesActivity.this, RewardsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         });
         
@@ -149,6 +153,7 @@ public class ActivitiesActivity extends AppCompatActivity {
             // Navigate to profile or settings page
             Intent intent = new Intent(ActivitiesActivity.this, ProfileActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             finish();
         });
         
@@ -292,6 +297,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         btnAddTask.setOnClickListener(v -> {
             Intent intent = new Intent(ActivitiesActivity.this, AddTaskActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
     }
 
@@ -301,6 +307,7 @@ public class ActivitiesActivity extends AppCompatActivity {
             try {
                 Intent intent = new Intent(ActivitiesActivity.this, RunningSubjectsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 // Add a Toast message to confirm button click
                 Toast.makeText(this, "Opening Running Subjects...", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {

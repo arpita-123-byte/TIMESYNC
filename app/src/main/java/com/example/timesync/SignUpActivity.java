@@ -109,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
+        // Validate inputs
         // Check for valid name
         if (TextUtils.isEmpty(name)) {
             nameEditText.setError("Name is required");
@@ -155,10 +156,25 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        // For demonstration purposes, we'll just navigate to the main activity
-        // In a real app, you would register the user with a server
-        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-        navigateToMainActivity();
+        // Register user with UserManager
+        UserManager userManager = UserManager.getInstance(this);
+        
+        // Check if user is already registered
+        if (userManager.isUserRegistered(email)) {
+            emailEditText.setError("This email is already registered");
+            emailEditText.requestFocus();
+            return;
+        }
+        
+        // Register the user
+        boolean success = userManager.registerUser(name, phone, email, password);
+        
+        if (success) {
+            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+            navigateToMainActivity();
+        } else {
+            Toast.makeText(this, "Failed to create account. Please try again.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -173,8 +189,16 @@ public class SignUpActivity extends AppCompatActivity {
      * Navigate to the main activity after successful registration
      */
     private void navigateToMainActivity() {
-        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        // Save logged in user email to shared preferences
+        String email = emailEditText.getText().toString().trim();
+        getSharedPreferences("TimeSync_Login", MODE_PRIVATE)
+                .edit()
+                .putString("logged_in_user", email)
+                .apply();
+        
+        Intent intent = new Intent(SignUpActivity.this, ActivitiesActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish(); // Close this activity so the user can't go back to sign-up screen using back button
     }
 } 
