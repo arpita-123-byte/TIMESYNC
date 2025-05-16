@@ -352,6 +352,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+
+
                 android:src="@drawable/ic_tasks"
                 app:tint="@android:color/white" />
         </FrameLayout>
